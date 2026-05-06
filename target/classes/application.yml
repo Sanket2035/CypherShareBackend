@@ -1,0 +1,52 @@
+server:
+  port: ${PORT:8080}
+
+spring:
+  application:
+    name: CypherShare
+  datasource:
+    url: ${JDBC_DATABASE_URL:jdbc:postgresql://db.oepvypkhknuvyxevqrrr.supabase.co:5432/postgres}
+    username: ${JDBC_DATABASE_USERNAME:postgres}
+    password: ${JDBC_DATABASE_PASSWORD:Sanket@2035}
+  mail:
+    host: ${SMTP_HOST:smtp.gmail.com}
+    port: ${SMTP_PORT:587}
+    username: ${SMTP_USERNAME:your-email@gmail.com}
+    password: ${SMTP_PASSWORD:your-app-password}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: ${GOOGLE_CLIENT_ID:727246196506-km2j2ufh2k75d25oat13ndo0ioe6ab0n.apps.googleusercontent.com}
+            client-secret: ${GOOGLE_CLIENT_SECRET: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}
+            scope: email, profile
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: metrics,health,info,prometheus
+
+jwt:
+  secret: 4b1c1d88a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8
+  expirationMs: 86400000
+
+stripe:
+  secret:
+    key: ${STRIPE_SECRET_KEY:placeholder}
+  webhook:
+    secret: ${STRIPE_WEBHOOK_SECRET:placeholder}
